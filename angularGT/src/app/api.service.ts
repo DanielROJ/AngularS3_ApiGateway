@@ -26,12 +26,16 @@ export class ApiService {
     return this.http.get(this.apiGet+'?nameFile='+nameFile);
   }
 
-  setDeleteFile(nameFile:string){
-    let obj = undefined;
-    return this.http.delete(this.apiDelete+'?nameFile='+nameFile);
+  setDeleteFile(nameFile:string):any{
+    return this.http.delete(this.apiDelete+'?nameFile='+nameFile).toPromise().then(data=>{
+      return data;
+    }).catch(err=>{
+      console.log(err)
+      return undefined;
+    });
   }
 
-  setWebS3(url:string,nameFile:string){
+  setWebS3(url:string,nameFile:string):any{
     let obj= {
       url:url,
       nameFile:nameFile

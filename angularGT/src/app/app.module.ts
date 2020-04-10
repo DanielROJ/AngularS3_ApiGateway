@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from "@angular/common";
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatBottomSheetModule,MatSnackBarModule } from "@angular/material";
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    SweetAlert2Module
+    BrowserAnimationsModule,
+    MatBottomSheetModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

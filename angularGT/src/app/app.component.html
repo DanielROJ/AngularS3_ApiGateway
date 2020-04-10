@@ -5,17 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API GateWay Angular</title>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 </head>
-
+   
 <body>
-  <section>
-    <table *ngIf="nameFiles.length >0">
-      <tr>
+  <section class="container-lg">
+    <table *ngIf="nameFiles.length >0" class="table table-striped table-light">
+      <thead class="thead-light">
+      <tr >
         <th>
           Nombre Archivo
         </th>
@@ -26,7 +28,8 @@
           Tamaño Archivo
         </th>
       </tr>
-      
+    </thead>
+    <tbody>
       <tr *ngFor="let item of nameFiles">
         <td>
           {{item.key}}
@@ -38,34 +41,53 @@
           {{item.size}}
         </td>
       </tr>
+    </tbody>
     </table>
   </section>
 
-  <section>
+  <section class="container-lg">
     <div>
-      <form>
-        <div>
-          <label>Seleccione el nombre del archivo que desea consultar</label>
-          <select >
+    
+        <div class="form-group">
+         <label  class="label" for="se">Seleccione el nombre del archivo que desea consultar: </label>
+          <select name="se"class="form-control" >
+            <option selected="true"  (click)="getContentFile(undefined)">Seleccione Archivo</option>
             <option *ngFor="let item of nameFiles" value="{{item.key}}"  (click)="getContentFile(item.key)">{{item.key}}</option>
           </select>
           
         </div>
-      </form>
-
-    <div *ngIf="content !== ''">
-      <textarea>
+      
+    <div class="form-group" *ngIf="content !== ''">
+      <label for="tx">Contenido</label>
+      <textarea name="tx" class="form-control card-text" rows="5">
          {{content}}
       </textarea>
-
-      <input type="button" value="Borrar Elemento" (click)="getDeleteFile('gol')">
+      <br>
+      <input class="form-control btn btn-danger" type="button" value="Borrar Elemento" (click)="getDeleteFile('gol')">
 
     </div>
-
-
-
     </div>
   </section>
+
+
+  <section class="container">
+    <div class="card-body">
+      <form  [formGroup]="fbGroup">
+        <div class="form-group">
+          <label for="url">Ingrese La url: </label>
+          <input class="form-control" formControlName="url" name="url" type="text" placeholder="http:www.example.com">
+        </div>
+        <div class="form-group">
+          <label for="nombre">Ingrese el Nombre del Archivo: </label>
+          <input class="form-control"  formControlName="nameFile" name="nombre" type="text" placeholder="name">
+        </div>
+        <input  class="form-control btn btn-info" type="button" value="Realizar Acción" (click)="getURLpage()">
+      </form>
+    </div>
+
+    <h1 class="h1" style="align-content: center;">ANGULAR-CLOUD Daniel Rojas</h1>
+  </section>
+
 
 </body>
 
